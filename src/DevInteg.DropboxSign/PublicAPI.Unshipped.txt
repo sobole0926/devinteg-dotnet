@@ -1,0 +1,246 @@
+#nullable enable
+const DevInteg.DropboxSign.DropboxSignCallbacks.Acknowledgement = "Hello API Event Received" -> string!
+const DevInteg.DropboxSign.DropboxSignCallbacks.ContentHashHeader = "Content-Sha256" -> string!
+const DevInteg.DropboxSign.DropboxSignCallbacks.MaxIdLength = 128 -> int
+const DevInteg.DropboxSign.DropboxSignCallbacks.MaxPayloadLength = 262144 -> int
+const DevInteg.DropboxSign.DropboxSignCallbacks.PayloadField = "json" -> string!
+const DevInteg.DropboxSign.DropboxSignClient.HttpClientName = "DevInteg.DropboxSign" -> string!
+const DevInteg.DropboxSign.DropboxSignClient.MaxSearchPages = 10 -> int
+const DevInteg.DropboxSign.DropboxSignEventTypes.AllSigned = "signature_request_all_signed" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.CallbackTest = "callback_test" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Canceled = "signature_request_canceled" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Declined = "signature_request_declined" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Downloadable = "signature_request_downloadable" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.EmailBounce = "signature_request_email_bounce" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Expired = "signature_request_expired" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.FileError = "file_error" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Invalid = "signature_request_invalid" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Remind = "signature_request_remind" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Sent = "signature_request_sent" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.SignerSigned = "signature_request_signed" -> string!
+const DevInteg.DropboxSign.DropboxSignEventTypes.Viewed = "signature_request_viewed" -> string!
+const DevInteg.DropboxSign.DropboxSignOptions.DefaultBaseAddress = "https://api.hellosign.com/v3/" -> string!
+const DevInteg.DropboxSign.SigningLinkKeyRing.MinKeyBytes = 32 -> int
+const DevInteg.DropboxSign.SigningLinkTokens.MaxLength = 512 -> int
+DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CallbackRejection.ContentHashMismatch = 4 -> DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CallbackRejection.ContentHashMissing = 3 -> DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CallbackRejection.Malformed = 1 -> DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CallbackRejection.None = 0 -> DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CallbackRejection.SignatureInvalid = 2 -> DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CallbackRejection.Stale = 5 -> DevInteg.DropboxSign.CallbackRejection
+DevInteg.DropboxSign.CancelResult
+DevInteg.DropboxSign.CancelResult.<Clone>$() -> DevInteg.DropboxSign.CancelResult!
+DevInteg.DropboxSign.CancelResult.Canceled.get -> bool
+DevInteg.DropboxSign.CancelResult.Canceled.init -> void
+DevInteg.DropboxSign.CancelResult.CancelResult(bool Canceled, int Status, string? ErrorName) -> void
+DevInteg.DropboxSign.CancelResult.Deconstruct(out bool Canceled, out int Status, out string? ErrorName) -> void
+DevInteg.DropboxSign.CancelResult.Equals(DevInteg.DropboxSign.CancelResult? other) -> bool
+DevInteg.DropboxSign.CancelResult.ErrorName.get -> string?
+DevInteg.DropboxSign.CancelResult.ErrorName.init -> void
+DevInteg.DropboxSign.CancelResult.Status.get -> int
+DevInteg.DropboxSign.CancelResult.Status.init -> void
+DevInteg.DropboxSign.DropboxSignCallbacks
+DevInteg.DropboxSign.DropboxSignClient
+DevInteg.DropboxSign.DropboxSignClient.CancelAsync(string! requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<DevInteg.DropboxSign.CancelResult!>!
+DevInteg.DropboxSign.DropboxSignClient.CreateEmbeddedRequestAsync(DevInteg.DropboxSign.EmbeddedSignatureRequest! request, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<string!>!
+DevInteg.DropboxSign.DropboxSignClient.DownloadPdfAsync(string! requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<byte[]!>!
+DevInteg.DropboxSign.DropboxSignClient.DropboxSignClient(System.Net.Http.HttpClient! http, Microsoft.Extensions.Options.IOptions<DevInteg.DropboxSign.DropboxSignOptions!>! options) -> void
+DevInteg.DropboxSign.DropboxSignClient.FindByMetadataAsync(string! key, string! value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<string?>!
+DevInteg.DropboxSign.DropboxSignClient.GetAsync(string! requestId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<DevInteg.DropboxSign.SignatureRequest!>!
+DevInteg.DropboxSign.DropboxSignClient.GetEmbeddedSignUrlAsync(string! signatureId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<DevInteg.DropboxSign.EmbeddedSignUrl!>!
+DevInteg.DropboxSign.DropboxSignEvent
+DevInteg.DropboxSign.DropboxSignEvent.<Clone>$() -> DevInteg.DropboxSign.DropboxSignEvent!
+DevInteg.DropboxSign.DropboxSignEvent.Deconstruct(out string! EventType, out string! EventTime, out System.DateTimeOffset OccurredAt, out string? SignatureRequestId, out string? RelatedSignatureId) -> void
+DevInteg.DropboxSign.DropboxSignEvent.DropboxSignEvent(string! EventType, string! EventTime, System.DateTimeOffset OccurredAt, string? SignatureRequestId, string? RelatedSignatureId) -> void
+DevInteg.DropboxSign.DropboxSignEvent.Equals(DevInteg.DropboxSign.DropboxSignEvent? other) -> bool
+DevInteg.DropboxSign.DropboxSignEvent.EventTime.get -> string!
+DevInteg.DropboxSign.DropboxSignEvent.EventTime.init -> void
+DevInteg.DropboxSign.DropboxSignEvent.EventType.get -> string!
+DevInteg.DropboxSign.DropboxSignEvent.EventType.init -> void
+DevInteg.DropboxSign.DropboxSignEvent.OccurredAt.get -> System.DateTimeOffset
+DevInteg.DropboxSign.DropboxSignEvent.OccurredAt.init -> void
+DevInteg.DropboxSign.DropboxSignEvent.RelatedSignatureId.get -> string?
+DevInteg.DropboxSign.DropboxSignEvent.RelatedSignatureId.init -> void
+DevInteg.DropboxSign.DropboxSignEvent.SignatureRequestId.get -> string?
+DevInteg.DropboxSign.DropboxSignEvent.SignatureRequestId.init -> void
+DevInteg.DropboxSign.DropboxSignEventTypes
+DevInteg.DropboxSign.DropboxSignException
+DevInteg.DropboxSign.DropboxSignException.DropboxSignException(string! operation, int? status, string? errorName, bool transient, System.Exception? innerException = null) -> void
+DevInteg.DropboxSign.DropboxSignException.ErrorName.get -> string?
+DevInteg.DropboxSign.DropboxSignException.IsTransient.get -> bool
+DevInteg.DropboxSign.DropboxSignException.Operation.get -> string!
+DevInteg.DropboxSign.DropboxSignException.Status.get -> int?
+DevInteg.DropboxSign.DropboxSignOptions
+DevInteg.DropboxSign.DropboxSignOptions.ApiKey.get -> string!
+DevInteg.DropboxSign.DropboxSignOptions.ApiKey.set -> void
+DevInteg.DropboxSign.DropboxSignOptions.BaseAddress.get -> System.Uri!
+DevInteg.DropboxSign.DropboxSignOptions.BaseAddress.set -> void
+DevInteg.DropboxSign.DropboxSignOptions.ClientId.get -> string!
+DevInteg.DropboxSign.DropboxSignOptions.ClientId.set -> void
+DevInteg.DropboxSign.DropboxSignOptions.DropboxSignOptions() -> void
+DevInteg.DropboxSign.DropboxSignOptions.IsValid() -> bool
+DevInteg.DropboxSign.DropboxSignOptions.TestMode.get -> bool
+DevInteg.DropboxSign.DropboxSignOptions.TestMode.set -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest
+DevInteg.DropboxSign.EmbeddedSignatureRequest.<Clone>$() -> DevInteg.DropboxSign.EmbeddedSignatureRequest!
+DevInteg.DropboxSign.EmbeddedSignatureRequest.AllowDecline.get -> bool
+DevInteg.DropboxSign.EmbeddedSignatureRequest.AllowDecline.init -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Deconstruct(out string! Title, out System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.RequestSigner!>! Signers, out System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.SignatureDocument!>! Files) -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.EmbeddedSignatureRequest(string! Title, System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.RequestSigner!>! Signers, System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.SignatureDocument!>! Files) -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Equals(DevInteg.DropboxSign.EmbeddedSignatureRequest? other) -> bool
+DevInteg.DropboxSign.EmbeddedSignatureRequest.ExpiresAt.get -> System.DateTimeOffset?
+DevInteg.DropboxSign.EmbeddedSignatureRequest.ExpiresAt.init -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Files.get -> System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.SignatureDocument!>!
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Files.init -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Metadata.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Metadata.init -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Signers.get -> System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.RequestSigner!>!
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Signers.init -> void
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Title.get -> string!
+DevInteg.DropboxSign.EmbeddedSignatureRequest.Title.init -> void
+DevInteg.DropboxSign.EmbeddedSignUrl
+DevInteg.DropboxSign.EmbeddedSignUrl.<Clone>$() -> DevInteg.DropboxSign.EmbeddedSignUrl!
+DevInteg.DropboxSign.EmbeddedSignUrl.Deconstruct(out System.Uri! SignUrl, out System.DateTimeOffset? ExpiresAt) -> void
+DevInteg.DropboxSign.EmbeddedSignUrl.EmbeddedSignUrl(System.Uri! SignUrl, System.DateTimeOffset? ExpiresAt) -> void
+DevInteg.DropboxSign.EmbeddedSignUrl.Equals(DevInteg.DropboxSign.EmbeddedSignUrl? other) -> bool
+DevInteg.DropboxSign.EmbeddedSignUrl.ExpiresAt.get -> System.DateTimeOffset?
+DevInteg.DropboxSign.EmbeddedSignUrl.ExpiresAt.init -> void
+DevInteg.DropboxSign.EmbeddedSignUrl.SignUrl.get -> System.Uri!
+DevInteg.DropboxSign.EmbeddedSignUrl.SignUrl.init -> void
+DevInteg.DropboxSign.RequestSigner
+DevInteg.DropboxSign.RequestSigner.<Clone>$() -> DevInteg.DropboxSign.RequestSigner!
+DevInteg.DropboxSign.RequestSigner.Deconstruct(out string! Name, out string! EmailAddress, out int Order) -> void
+DevInteg.DropboxSign.RequestSigner.EmailAddress.get -> string!
+DevInteg.DropboxSign.RequestSigner.EmailAddress.init -> void
+DevInteg.DropboxSign.RequestSigner.Equals(DevInteg.DropboxSign.RequestSigner? other) -> bool
+DevInteg.DropboxSign.RequestSigner.Name.get -> string!
+DevInteg.DropboxSign.RequestSigner.Name.init -> void
+DevInteg.DropboxSign.RequestSigner.Order.get -> int
+DevInteg.DropboxSign.RequestSigner.Order.init -> void
+DevInteg.DropboxSign.RequestSigner.RequestSigner(string! Name, string! EmailAddress, int Order) -> void
+DevInteg.DropboxSign.Signature
+DevInteg.DropboxSign.Signature.<Clone>$() -> DevInteg.DropboxSign.Signature!
+DevInteg.DropboxSign.Signature.Deconstruct(out string! Id, out string! SignerEmailAddress, out string? SignerName, out int? Order, out string? StatusCode, out System.DateTimeOffset? SignedAt) -> void
+DevInteg.DropboxSign.Signature.Equals(DevInteg.DropboxSign.Signature? other) -> bool
+DevInteg.DropboxSign.Signature.Id.get -> string!
+DevInteg.DropboxSign.Signature.Id.init -> void
+DevInteg.DropboxSign.Signature.IsDeclined.get -> bool
+DevInteg.DropboxSign.Signature.Order.get -> int?
+DevInteg.DropboxSign.Signature.Order.init -> void
+DevInteg.DropboxSign.Signature.Signature(string! Id, string! SignerEmailAddress, string? SignerName, int? Order, string? StatusCode, System.DateTimeOffset? SignedAt) -> void
+DevInteg.DropboxSign.Signature.SignedAt.get -> System.DateTimeOffset?
+DevInteg.DropboxSign.Signature.SignedAt.init -> void
+DevInteg.DropboxSign.Signature.SignerEmailAddress.get -> string!
+DevInteg.DropboxSign.Signature.SignerEmailAddress.init -> void
+DevInteg.DropboxSign.Signature.SignerName.get -> string?
+DevInteg.DropboxSign.Signature.SignerName.init -> void
+DevInteg.DropboxSign.Signature.StatusCode.get -> string?
+DevInteg.DropboxSign.Signature.StatusCode.init -> void
+DevInteg.DropboxSign.SignatureDocument
+DevInteg.DropboxSign.SignatureDocument.<Clone>$() -> DevInteg.DropboxSign.SignatureDocument!
+DevInteg.DropboxSign.SignatureDocument.Content.get -> System.ReadOnlyMemory<byte>
+DevInteg.DropboxSign.SignatureDocument.Content.init -> void
+DevInteg.DropboxSign.SignatureDocument.ContentType.get -> string!
+DevInteg.DropboxSign.SignatureDocument.ContentType.init -> void
+DevInteg.DropboxSign.SignatureDocument.Deconstruct(out string! FileName, out System.ReadOnlyMemory<byte> Content, out string! ContentType) -> void
+DevInteg.DropboxSign.SignatureDocument.Equals(DevInteg.DropboxSign.SignatureDocument? other) -> bool
+DevInteg.DropboxSign.SignatureDocument.FileName.get -> string!
+DevInteg.DropboxSign.SignatureDocument.FileName.init -> void
+DevInteg.DropboxSign.SignatureDocument.SignatureDocument(string! FileName, System.ReadOnlyMemory<byte> Content, string! ContentType = "application/pdf") -> void
+DevInteg.DropboxSign.SignatureRequest
+DevInteg.DropboxSign.SignatureRequest.<Clone>$() -> DevInteg.DropboxSign.SignatureRequest!
+DevInteg.DropboxSign.SignatureRequest.Deconstruct(out string! Id, out bool IsComplete, out bool IsDeclined, out bool HasError, out System.DateTimeOffset? ExpiresAt, out System.Collections.Generic.IReadOnlyDictionary<string!, string!>! Metadata, out System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.Signature!>! Signatures) -> void
+DevInteg.DropboxSign.SignatureRequest.Equals(DevInteg.DropboxSign.SignatureRequest? other) -> bool
+DevInteg.DropboxSign.SignatureRequest.ExpiresAt.get -> System.DateTimeOffset?
+DevInteg.DropboxSign.SignatureRequest.ExpiresAt.init -> void
+DevInteg.DropboxSign.SignatureRequest.HasError.get -> bool
+DevInteg.DropboxSign.SignatureRequest.HasError.init -> void
+DevInteg.DropboxSign.SignatureRequest.Id.get -> string!
+DevInteg.DropboxSign.SignatureRequest.Id.init -> void
+DevInteg.DropboxSign.SignatureRequest.IsComplete.get -> bool
+DevInteg.DropboxSign.SignatureRequest.IsComplete.init -> void
+DevInteg.DropboxSign.SignatureRequest.IsDeclined.get -> bool
+DevInteg.DropboxSign.SignatureRequest.IsDeclined.init -> void
+DevInteg.DropboxSign.SignatureRequest.Metadata.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+DevInteg.DropboxSign.SignatureRequest.Metadata.init -> void
+DevInteg.DropboxSign.SignatureRequest.SignatureRequest(string! Id, bool IsComplete, bool IsDeclined, bool HasError, System.DateTimeOffset? ExpiresAt, System.Collections.Generic.IReadOnlyDictionary<string!, string!>! Metadata, System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.Signature!>! Signatures) -> void
+DevInteg.DropboxSign.SignatureRequest.Signatures.get -> System.Collections.Generic.IReadOnlyList<DevInteg.DropboxSign.Signature!>!
+DevInteg.DropboxSign.SignatureRequest.Signatures.init -> void
+DevInteg.DropboxSign.SigningLinkKeyRing
+DevInteg.DropboxSign.SigningLinkKeyRing.ActiveKeyId.get -> string!
+DevInteg.DropboxSign.SigningLinkKeyRing.ActiveKeyId.set -> void
+DevInteg.DropboxSign.SigningLinkKeyRing.IsValid() -> bool
+DevInteg.DropboxSign.SigningLinkKeyRing.Keys.get -> System.Collections.Generic.Dictionary<string!, string!>!
+DevInteg.DropboxSign.SigningLinkKeyRing.Keys.set -> void
+DevInteg.DropboxSign.SigningLinkKeyRing.MaxLifetimeDays.get -> int
+DevInteg.DropboxSign.SigningLinkKeyRing.MaxLifetimeDays.set -> void
+DevInteg.DropboxSign.SigningLinkKeyRing.SigningLinkKeyRing() -> void
+DevInteg.DropboxSign.SigningLinkSubject
+DevInteg.DropboxSign.SigningLinkSubject.<Clone>$() -> DevInteg.DropboxSign.SigningLinkSubject!
+DevInteg.DropboxSign.SigningLinkSubject.Deconstruct(out string! SignatureRequestId, out string! SignatureId) -> void
+DevInteg.DropboxSign.SigningLinkSubject.Equals(DevInteg.DropboxSign.SigningLinkSubject? other) -> bool
+DevInteg.DropboxSign.SigningLinkSubject.SignatureId.get -> string!
+DevInteg.DropboxSign.SigningLinkSubject.SignatureId.init -> void
+DevInteg.DropboxSign.SigningLinkSubject.SignatureRequestId.get -> string!
+DevInteg.DropboxSign.SigningLinkSubject.SignatureRequestId.init -> void
+DevInteg.DropboxSign.SigningLinkSubject.SigningLinkSubject(string! SignatureRequestId, string! SignatureId) -> void
+DevInteg.DropboxSign.SigningLinkTokens
+DevInteg.DropboxSign.SigningLinkTokens.Issue(DevInteg.DropboxSign.SigningLinkSubject! subject, System.DateTimeOffset? requestExpiresAt) -> string!
+DevInteg.DropboxSign.SigningLinkTokens.SigningLinkTokens(DevInteg.DropboxSign.SigningLinkKeyRing! ring, System.TimeProvider! time) -> void
+DevInteg.DropboxSign.SigningLinkTokens.Verify(string? token) -> DevInteg.DropboxSign.SigningLinkSubject?
+Microsoft.Extensions.DependencyInjection.DropboxSignServiceCollectionExtensions
+override DevInteg.DropboxSign.CancelResult.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.CancelResult.GetHashCode() -> int
+override DevInteg.DropboxSign.CancelResult.ToString() -> string!
+override DevInteg.DropboxSign.DropboxSignEvent.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.DropboxSignEvent.GetHashCode() -> int
+override DevInteg.DropboxSign.DropboxSignEvent.ToString() -> string!
+override DevInteg.DropboxSign.EmbeddedSignatureRequest.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.EmbeddedSignatureRequest.GetHashCode() -> int
+override DevInteg.DropboxSign.EmbeddedSignatureRequest.ToString() -> string!
+override DevInteg.DropboxSign.EmbeddedSignUrl.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.EmbeddedSignUrl.GetHashCode() -> int
+override DevInteg.DropboxSign.EmbeddedSignUrl.ToString() -> string!
+override DevInteg.DropboxSign.RequestSigner.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.RequestSigner.GetHashCode() -> int
+override DevInteg.DropboxSign.RequestSigner.ToString() -> string!
+override DevInteg.DropboxSign.Signature.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.Signature.GetHashCode() -> int
+override DevInteg.DropboxSign.Signature.ToString() -> string!
+override DevInteg.DropboxSign.SignatureDocument.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.SignatureDocument.GetHashCode() -> int
+override DevInteg.DropboxSign.SignatureDocument.ToString() -> string!
+override DevInteg.DropboxSign.SignatureRequest.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.SignatureRequest.GetHashCode() -> int
+override DevInteg.DropboxSign.SignatureRequest.ToString() -> string!
+override DevInteg.DropboxSign.SigningLinkSubject.Equals(object? obj) -> bool
+override DevInteg.DropboxSign.SigningLinkSubject.GetHashCode() -> int
+override DevInteg.DropboxSign.SigningLinkSubject.ToString() -> string!
+static DevInteg.DropboxSign.CancelResult.operator !=(DevInteg.DropboxSign.CancelResult? left, DevInteg.DropboxSign.CancelResult? right) -> bool
+static DevInteg.DropboxSign.CancelResult.operator ==(DevInteg.DropboxSign.CancelResult? left, DevInteg.DropboxSign.CancelResult? right) -> bool
+static DevInteg.DropboxSign.DropboxSignCallbacks.ContentHash(string! apiKey, string! json) -> string!
+static DevInteg.DropboxSign.DropboxSignCallbacks.EventHash(string! apiKey, string! eventTime, string! eventType) -> string!
+static DevInteg.DropboxSign.DropboxSignCallbacks.TryVerify(string? json, string? contentHash, string! apiKey, System.DateTimeOffset now, out DevInteg.DropboxSign.DropboxSignEvent? callbackEvent, out DevInteg.DropboxSign.CallbackRejection rejection) -> bool
+static DevInteg.DropboxSign.DropboxSignEvent.operator !=(DevInteg.DropboxSign.DropboxSignEvent? left, DevInteg.DropboxSign.DropboxSignEvent? right) -> bool
+static DevInteg.DropboxSign.DropboxSignEvent.operator ==(DevInteg.DropboxSign.DropboxSignEvent? left, DevInteg.DropboxSign.DropboxSignEvent? right) -> bool
+static DevInteg.DropboxSign.EmbeddedSignatureRequest.operator !=(DevInteg.DropboxSign.EmbeddedSignatureRequest? left, DevInteg.DropboxSign.EmbeddedSignatureRequest? right) -> bool
+static DevInteg.DropboxSign.EmbeddedSignatureRequest.operator ==(DevInteg.DropboxSign.EmbeddedSignatureRequest? left, DevInteg.DropboxSign.EmbeddedSignatureRequest? right) -> bool
+static DevInteg.DropboxSign.EmbeddedSignUrl.operator !=(DevInteg.DropboxSign.EmbeddedSignUrl? left, DevInteg.DropboxSign.EmbeddedSignUrl? right) -> bool
+static DevInteg.DropboxSign.EmbeddedSignUrl.operator ==(DevInteg.DropboxSign.EmbeddedSignUrl? left, DevInteg.DropboxSign.EmbeddedSignUrl? right) -> bool
+static DevInteg.DropboxSign.RequestSigner.operator !=(DevInteg.DropboxSign.RequestSigner? left, DevInteg.DropboxSign.RequestSigner? right) -> bool
+static DevInteg.DropboxSign.RequestSigner.operator ==(DevInteg.DropboxSign.RequestSigner? left, DevInteg.DropboxSign.RequestSigner? right) -> bool
+static DevInteg.DropboxSign.Signature.operator !=(DevInteg.DropboxSign.Signature? left, DevInteg.DropboxSign.Signature? right) -> bool
+static DevInteg.DropboxSign.Signature.operator ==(DevInteg.DropboxSign.Signature? left, DevInteg.DropboxSign.Signature? right) -> bool
+static DevInteg.DropboxSign.SignatureDocument.operator !=(DevInteg.DropboxSign.SignatureDocument? left, DevInteg.DropboxSign.SignatureDocument? right) -> bool
+static DevInteg.DropboxSign.SignatureDocument.operator ==(DevInteg.DropboxSign.SignatureDocument? left, DevInteg.DropboxSign.SignatureDocument? right) -> bool
+static DevInteg.DropboxSign.SignatureRequest.operator !=(DevInteg.DropboxSign.SignatureRequest? left, DevInteg.DropboxSign.SignatureRequest? right) -> bool
+static DevInteg.DropboxSign.SignatureRequest.operator ==(DevInteg.DropboxSign.SignatureRequest? left, DevInteg.DropboxSign.SignatureRequest? right) -> bool
+static DevInteg.DropboxSign.SigningLinkKeyRing.DecodeKey(string? value) -> byte[]?
+static DevInteg.DropboxSign.SigningLinkKeyRing.IsKeyId(string? id) -> bool
+static DevInteg.DropboxSign.SigningLinkSubject.operator !=(DevInteg.DropboxSign.SigningLinkSubject? left, DevInteg.DropboxSign.SigningLinkSubject? right) -> bool
+static DevInteg.DropboxSign.SigningLinkSubject.operator ==(DevInteg.DropboxSign.SigningLinkSubject? left, DevInteg.DropboxSign.SigningLinkSubject? right) -> bool
+static Microsoft.Extensions.DependencyInjection.DropboxSignServiceCollectionExtensions.AddDropboxSignClient(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IHttpClientBuilder!
+static Microsoft.Extensions.DependencyInjection.DropboxSignServiceCollectionExtensions.AddDropboxSignSigningLinks(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static readonly DevInteg.DropboxSign.DropboxSignCallbacks.MaxAge -> System.TimeSpan
+static readonly DevInteg.DropboxSign.DropboxSignCallbacks.MaxAhead -> System.TimeSpan

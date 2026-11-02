@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DevInteg.DropboxSign/DevInteg.DropboxSign.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DevInteg.DropboxSign.Tests/DevInteg.DropboxSign.Tests.csproj" />
+  </Folder>
+</Solution>

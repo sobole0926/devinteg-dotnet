@@ -1,0 +1,53 @@
+name: release
+
+# Publishes one package to nuget.org when its tag is pushed, e.g. `dropboxsign/v1.0.0`.
+# nuget.org Trusted Publishing: no stored API key; NuGet/login trades this run's OIDC token for a short-lived one.
+on:
+  push:
+    tags: ['*/v*']
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: nuget
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      - name: Tag is on main
+        run: git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+      - name: Package for the tag
+        id: package
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          case "${TAG%%/v*}" in
+            dropboxsign) project=src/DevInteg.DropboxSign/DevInteg.DropboxSign.csproj ;;
+            *) echo "::error::No package for tag $TAG"; exit 1 ;;
+          esac
+          echo "project=$project" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          global-json-file: global.json
+      - run: dotnet restore DevInteg.slnx
+      - run: dotnet build DevInteg.slnx --no-restore -c Release
+      - run: dotnet test --solution DevInteg.slnx --no-build -c Release
+      - name: Pack
+        env:
+          PROJECT: ${{ steps.package.outputs.project }}
+        run: dotnet pack "$PROJECT" --no-build -c Release -o artifacts
+      - uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
+        id: login
+        with:
+          user: ${{ vars.NUGET_USER }}
+      # The .snupkg beside each .nupkg is pushed with it.
+      - name: Push
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate

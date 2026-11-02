@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Every action is pinned to a full commit SHA; the comment names its release.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # MinVer reads the tags to version the packages.
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          global-json-file: global.json
+      - run: dotnet restore DevInteg.slnx
+      - name: Format check
+        run: dotnet format DevInteg.slnx --verify-no-changes --no-restore
+      - run: dotnet build DevInteg.slnx --no-restore -c Release
+      - run: dotnet test --solution DevInteg.slnx --no-build -c Release
+      # Packing runs package validation, so a broken package fails here rather than at release.
+      - run: dotnet pack DevInteg.slnx --no-build -c Release -o artifacts
